@@ -9,6 +9,7 @@ public class Q5 {
         H = sc.nextInt();
         M = sc.nextInt();
         sc.close();
+
         if (M < 45) {
             H--;
             M = 60 - (45 - M);
