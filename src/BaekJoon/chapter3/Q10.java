@@ -1,22 +1,27 @@
 package BaekJoon.chapter3;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.util.StringTokenizer;
 
 public class Q10 {
     public static void main(String[] args) throws IOException {
+        // 입력
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        int N = Integer.parseInt(br.readLine());
+        // 출력
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < (N -1) - i; j++) {
-                System.out.print(" ");
+        StringTokenizer st;
+
+        for (int i = 0; i > -1; i++) {
+            st = new StringTokenizer(br.readLine(), " ");
+            int A = Integer.parseInt(st.nextToken());
+            int B = Integer.parseInt(st.nextToken());
+            if (A + B == 0) {
+                break;
             }
-            for (int k = 0; k < 1 + i ; k++) {
-                System.out.print("*");
-            } System.out.println();
+            bw.write(A + B + "\n");
         }
+        bw.close();
     }
 }

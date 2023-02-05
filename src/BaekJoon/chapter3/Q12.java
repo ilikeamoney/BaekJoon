@@ -3,37 +3,40 @@ package BaekJoon.chapter3;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.StringTokenizer;
 
 public class Q12 {
     public static void main(String[] args) throws IOException {
-
         // 입력
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        // 문제 더하기 싸이클
+        // 1. 어떤 0 보다크고 99 같거나 작은 수가 주어짐 ex) 26
+        // 1-1. 만약 주어진수가 10보다 작을시 앞에 0을 붙여서 두자리 수를 만든다
+        // 2. 그 수를 앞자리 뒷자리를 더함 ex) 2 + 6 = 8
+        // 3. 각 자리를 더한 총 값에 뒷자리 와 처음에 주어진 수 뒷자리를 조합해서 새로운 수를 만듬 6 + 8 = 68
+        // 4. 위에 작업을 반복함
+        // 5. 와 근데 수학적으로 접근하니까 진짜 대박임;; 어떻게 이런 생각을 할 수 있을까..
 
-        // 출력
-        StringBuilder sb = new StringBuilder();
+        int N = Integer.parseInt(br.readLine()); // 입력 : 26
 
-        // 문자열 분리 대기
-        StringTokenizer st;
+        int cnt = 0;
+        int copy = N; // 변수 복사 copy = 26 이라는 값이 들어가게 된다
 
-        // 조건문에 활용할 문자열
-        String str;
+        do {
+            // 반복문에서 N에 새로운 값을 대입한다.
+            // 하지만 기존에 N값은 유지됨
+            N = ((N % 10) * 10) + ((N / 10) + (N % 10)) % 10;
+            // ? = ((26 % 10) * 10) + ((26 / 10) + (26 % 10)) % 10
+            // ? =      (6  *  10)  +  (2  +  6) % 10
+            // ? =          68      +    8      ,8 % 10 = 8
+            // ? = 68
+            // 그래서 처음에 N의 값 26 의 1의 자릿수가 새로운 수의 10의 자리에 들어감 = 6
+            // 그리고 처음에 N 값의 각 자리수를 더한 값 2 + 6 = 8의 1의 자리가 새로운 수 1의 자리에 들어감 = 8
+            // 이 매커니즘을 완벽하게 일치시킴
 
+            cnt++;
+            // 루프가 반복 될때마다 실행 +1 된다
+        } while (N != copy); // 입력값이 변수 복사한 것과 같지 않을 때 까지 반복
 
-        // 문제 해결 방안
-        // 결론은 데이터가 없다는 뜻인 End Of File (EOF) 처리를 해주어야 하는것이 맞는것
-
-        while ((str = br.readLine()) != null) { // 한줄에 입력받은 문자열이 null 이면 break
-            st = new StringTokenizer(str, " "); // 한줄을 입력 받는것이 아니라 문자열을 입력받음 공백을 기준으로
-
-            int A = Integer.parseInt(st.nextToken()); // A 입력
-
-            int B = Integer.parseInt(st.nextToken()); // B 입력
-
-            sb.append(A + B).append("\n"); // A + B 를 더하고 줄 바꿈
-
-        }
-        System.out.println(sb); // 결과 출력
+        System.out.println(cnt);
     }
 }
