@@ -6,33 +6,28 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Q2 {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException{
 
-        // 입력
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in)); // 입력
 
-        // 한줄을 읽는데 공백을 기준으로 읽는다.
-        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+        StringTokenizer st = new StringTokenizer(br.readLine(), " "); // 공백을 기준으로 문자 입력
 
-        // 변수에 입력 받음
-        int N = Integer.parseInt(st.nextToken());
-        int X = Integer.parseInt(st.nextToken());
+        StringBuilder sb = new StringBuilder(); // 출력 문자를 담는다.
 
-        // StringBuilder 생성
-        StringBuilder sb = new StringBuilder();
+        int N = Integer.parseInt(st.nextToken()); // 배열의 크기
 
-        // 위에서 N,X 입력을 받았기 때문에 한번 더 선언한다.
-        st = new StringTokenizer(br.readLine(), " ");
+        int T = Integer.parseInt(st.nextToken()); // 비교할 값
 
-        for (int i = 0; i < N; i++) {
-            // 찾고자 하는 값을 입력 받는다.
-            int value = Integer.parseInt(st.nextToken());
+        int[] arr = new int[N];
 
-            // 조건문으로 해당 되는 값을
-            if (value < X)
-                // 추가한다.
-                sb.append(value).append(' ');
+        StringTokenizer sz = new StringTokenizer(br.readLine(), " "); // 공백으로 구분
+
+        for (int  i = 0;  i < arr.length;  i++) { // 배열의 길이 만큼 반복
+            arr[i] = Integer.parseInt(sz.nextToken()); // 배열 인덱스 마다 요소값을 지정
+            if (arr[i] < T) { // 배열 요소들이 T보다 작은 조건인 경우
+                sb.append(arr[i]).append(" "); // 그 값을 추가
+            }
         }
-        System.out.println(sb);
+        System.out.println(sb); // 출력
     }
 }

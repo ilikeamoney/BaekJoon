@@ -3,40 +3,32 @@ package BaekJoon.chapter4;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.StringTokenizer;
 
 public class Q7 {
     public static void main(String[] args) throws IOException {
-        // 입력
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        // 테스트 케이스 횟수
-        int N = Integer.parseInt(br.readLine());
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in )); // 입력
 
-        // 문자열 배열
-        String[] str = new String[N];
+        double[] arr = new double[Integer.parseInt(br.readLine())]; // 총 과목 갯수
 
-        int total = 0;
+        StringTokenizer st = new StringTokenizer(br.readLine(), " "); // 문자열 구분
 
-        for (int i = 0; i < str.length; i++) {
-            str[i] = br.readLine();
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = Double.parseDouble(st.nextToken()); // 과목 점수 입력
         }
 
-        for (int i = 0; i < str.length; i++) {
+        double sum = 0; // 총 과목 점수를 더한 값
 
-            int cnt = 0;
-            int sum = 0;
+        Arrays.sort(arr); // 배열 요소 오름차순으로 정렬
 
-            for (int j = 0; j < str[i].length(); j++) {
 
-                if (str[i].charAt(j) == 'O') {
-                    cnt++;
-                }
-                else {
-                    cnt = 0;
-                }
-                sum += cnt;
-            }
-            System.out.println(sum);
+        for (int i = 0; i < arr.length; i++) {
+
+            //  (배열은 지금 오름차순으로 정렬 되어있기 때문에 마지막 값이 가장 크다)
+            sum += (arr[i] / arr[arr.length - 1]) * 100; //  과목점수  /  과목 점수중에 가장 큰값 * 100
         }
+        System.out.println(sum / arr.length);
     }
 }
