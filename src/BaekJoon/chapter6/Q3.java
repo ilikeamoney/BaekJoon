@@ -6,20 +6,29 @@ import java.io.InputStreamReader;
 
 public class Q3 {
     public static void main(String[] args) throws IOException {
-
-        // 입력
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        // 알파벳
-        String apb = "abcdefghijklmnopqrstuvwxyz";
+        int[] arr = new int[26];
 
-        // 입력 받을 문자
-        String N = br.readLine();
-
-        // 알파벳 수 만큼 반복
-        for (int i = 0; i < apb.length(); i++) {
-            // 입력 받은 단어에 해당 알파벳이 포함되어 있다면 인덱스 번호 출력 아니면 -1
-            System.out.println(N.indexOf(apb.charAt(i)));
+        for(int i = 0; i < arr.length; i++) {
+            arr[i] = -1;
         }
+
+        String S = br.readLine();
+
+        for(int i = 0; i < S.length(); i++) {
+            char ch = S.charAt(i);
+
+            if(arr[ch - 'a'] == -1) {	// arr 원소 값이 -1 인 경우에만 초기화
+                arr[ch - 'a'] = i;
+            }
+        }
+
+        for(int val : arr) {	// 배열 출력
+            System.out.print(val + " ");
+        }
+
+        // 뭐야 씨발 별로 어렵지도 않았넼ㅋㅋㅋㅋㅋㅋㅋㅋ 아우
+        // arr[b
     }
 }
