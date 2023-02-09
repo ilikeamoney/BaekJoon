@@ -7,47 +7,54 @@ import java.io.InputStreamReader;
 public class Q9 {
     public static void main(String[] args) throws IOException {
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in)); // 입력
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String str = br.readLine(); // 문자열 입력
 
-        String N = br.readLine(); // 입력
+        int len = str.length(); // 반복문 루프 횟수 (문자열 길이)
+        int count = 0; // 문자 카운트
 
-        int cnt = 0; // 총 값을 받을 변수
+        for (int i = 0; i < str.length(); i++) { // 문자열 길이 까지 반복
 
-        for (int i = 0; i < N.length(); i++) { // 문자열 길이 만큼
-            switch (N.charAt(i)) { // 문자열 인덱스 값의 확인해서 어떤 케이스 인지 확인한다.
-                case 'A' : case 'B' : case 'C' :
-                    cnt += 3;
-                    break;
+            char ch = str.charAt(i); // 문자열에 문자 한개 한개 마다 변수에 넣는다.
 
-                case 'D' : case 'E' : case 'F' :
-                    cnt += 4;
-                    break;
-
-                case 'G' : case 'H' : case 'I' :
-                    cnt += 5;
-                    break;
-
-                case 'J' : case 'K' : case 'L' :
-                    cnt += 6;
-                    break;
-
-                case 'M' : case 'N' : case 'O' :
-                    cnt += 7;
-                    break;
-
-                case 'P' : case 'Q' : case 'R' : case 'S' :
-                    cnt += 8;
-                    break;
-
-                case 'T' : case 'U' : case 'V' :
-                    cnt += 9;
-                    break;
-
-                case 'W' : case 'X' : case 'Y' : case 'Z' :
-                    cnt += 10;
-                    break;
+            if(ch == 'c' && i < len - 1) {
+                //만약 ch 다음 문자가 '=' 또는 '-' 이라면?
+                if(str.charAt(i + 1) == '=' || str.charAt(i + 1) == '-') {
+                    // i+1 까지가 하나의 문자이므로 다음 문자를 건너 뛰기 위해 1 증가
+                    i++;
+                }
             }
+
+            else if(ch == 'd' && i < len - 1) { // 문자가 'd' 이거나 현재 인덱스가 문자열 길이 -1 보다 작을때
+                if(str.charAt(i + 1) == '-') {	// d- 일 경우
+                    i++; // 문자 건너 뜀
+                }
+                else if(str.charAt(i + 1) == 'z' && i < len - 2) { // 문자 d 뒤에 z 문자가 있고 현재 인덱스 i 가 len -2 보다 작다면
+
+                    if(str.charAt(i + 2) == '=') {	// dz= 일 경우
+                        i += 2;
+                    }
+                }
+            }
+
+            else if((ch == 'l' || ch == 'n') && i < len - 1) {
+                if(str.charAt(i + 1) == 'j') {	// lj 또는 nj 일 경우
+                    i++;
+                }
+            }
+
+
+            else if((ch == 's' || ch == 'z') && i < len - 1) {
+                if(str.charAt(i + 1) == '=') {	// s= 또는z= 일 경우
+                    i++;
+                }
+
+            }
+
+            count++;
+
         }
-        System.out.println(cnt);
+
+        System.out.println(count);
     }
 }
